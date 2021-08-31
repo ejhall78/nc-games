@@ -4,6 +4,7 @@ import { NavBar } from './components/NavBar';
 import { ReviewsList } from './components/ReviewsList';
 import { Switch, Route } from 'react-router-dom';
 import { CategoriesList } from './components/CategoriesList';
+import { Review } from './components/Review';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <ReviewsList />
+        </Route>
+        <Route exact path="/reviews/:review_id">
+          <Review />
         </Route>
         <Route exact path="/categories">
           <CategoriesList />

@@ -25,3 +25,11 @@ header {
   list-style: none;
   border: 5px solid purple;
 }
+
+.Review {
+  border: 5px solid green;
+}
+
+.Comments {
+  border: 5px solid orange;
+}

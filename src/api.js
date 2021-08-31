@@ -17,3 +17,9 @@ export const getCategories = async () => {
 
   return res.data.categories;
 };
+
+export const getReviewById = async review_id => {
+  const res = await api.get(`/reviews/${review_id}`);
+
+  return res.data.review;
+};
