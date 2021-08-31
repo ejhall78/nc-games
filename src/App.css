@@ -5,3 +5,17 @@
 header {
   border: 5px solid red;
 }
+
+.NavBar {
+  border: 5px solid blue;
+}
+
+.ReviewsList {
+  border: 5px solid purple;
+  list-style: none;
+}
+
+.ReviewsList__review {
+  border: 3px solid greenyellow;
+  border-radius: 10px;
+}
