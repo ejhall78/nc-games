@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getCommentsById } from '../api';
 
 export const Comments = ({ review_id }) => {
@@ -17,7 +18,9 @@ export const Comments = ({ review_id }) => {
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
             <li key={comment_id}>
-              <p>{author}</p>
+              <Link to={`/users/${author}`}>
+                <p>{author}</p>
+              </Link>
               <p>Votes: {votes}</p>
               <p>{body}</p>
               <p>{created_at.toString()}</p>

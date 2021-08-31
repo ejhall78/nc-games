@@ -5,6 +5,7 @@ import { ReviewsList } from './components/ReviewsList';
 import { Switch, Route } from 'react-router-dom';
 import { CategoriesList } from './components/CategoriesList';
 import { Review } from './components/Review';
+import { User } from './components/User';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route exact path="/reviews/categories/:category">
           <ReviewsList />
+        </Route>
+        <Route exact path="/users/:username">
+          <User />
         </Route>
       </Switch>
     </div>

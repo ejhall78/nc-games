@@ -29,3 +29,9 @@ export const getCommentsById = async review_id => {
 
   return res.data.comments;
 };
+
+export const getUser = async username => {
+  const res = await api.get(`/users/${username}`);
+
+  return res.data.user;
+};

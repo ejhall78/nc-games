@@ -18,6 +18,7 @@ export const ReviewsList = () => {
   return (
     <div>
       <h2>{category ? category : null}</h2>
+      <Link to="/reviews/write-review">Write a review</Link>
       <ul className="ReviewsList">
         {reviews.map(
           ({
@@ -39,7 +40,9 @@ export const ReviewsList = () => {
                     width="20%"
                   />
                 </Link>
-                <p>{owner}</p>
+                <Link to={`/users/${owner}`}>
+                  <p>{owner}</p>
+                </Link>
                 <p>Votes: {votes}</p>
                 <p>Comments: {comment_count}</p>
               </li>
