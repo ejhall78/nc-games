@@ -17,6 +17,7 @@ export const Review = () => {
     <div>
       <div className="Review">
         <p>{review.owner}</p>
+        <p>Votes {review.votes}</p>
         <h2>{review.title}</h2>
         <img
           alt={review.title}

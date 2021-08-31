@@ -33,3 +33,11 @@ header {
 .Comments {
   border: 5px solid orange;
 }
+
+.Comments__commentsList {
+  list-style: none;
+}
+
+.Comments__commentsList li {
+  border-bottom: 1px solid black;
+}

@@ -20,11 +20,17 @@ export const ReviewsList = () => {
       <h2>{category ? category : null}</h2>
       <ul className="ReviewsList">
         {reviews.map(
-          ({ review_id, owner, title, review_img_url, review_body }) => {
+          ({
+            review_id,
+            owner,
+            title,
+            review_img_url,
+            votes,
+            comment_count,
+          }) => {
             return (
-              <Link key={review_id} to={`/reviews/${review_id}`}>
-                <li className="ReviewsList__review">
-                  <p>{owner}</p>
+              <li key={review_id} className="ReviewsList__review">
+                <Link to={`/reviews/${review_id}`}>
                   <p>{title}</p>
                   <img
                     alt={title}
@@ -32,8 +38,11 @@ export const ReviewsList = () => {
                     height="20%"
                     width="20%"
                   />
-                </li>
-              </Link>
+                </Link>
+                <p>{owner}</p>
+                <p>Votes: {votes}</p>
+                <p>Comments: {comment_count}</p>
+              </li>
             );
           }
         )}
