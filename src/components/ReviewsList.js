@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getReviews } from '../api';
 
 export const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
 
+  const { category } = useParams();
+
   useEffect(() => {
-    getReviews()
+    getReviews(category)
       .then(reviewsFromApi => {
         setReviews(reviewsFromApi);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [category]);
 
   return (
     <div>
+      <h2>{category ? category : null}</h2>
       <ul className="ReviewsList">
         {reviews.map(
           ({ review_id, owner, title, review_img_url, review_body }) => {
