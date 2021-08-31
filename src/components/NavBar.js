@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 export const NavBar = () => {
   return (
     <div className="NavBar">
-      <p>Categories</p>
+      <Link to="/categories">Categories</Link>
     </div>
   );
 };

@@ -9,3 +9,9 @@ export const getReviews = async () => {
 
   return response.data.reviews;
 };
+
+export const getCategories = async () => {
+  const res = await api.get('/categories');
+
+  return res.data.categories;
+};

@@ -8,6 +8,7 @@ header {
 
 .NavBar {
   border: 5px solid blue;
+  padding: 1em;
 }
 
 .ReviewsList {
@@ -18,4 +19,9 @@ header {
 .ReviewsList__review {
   border: 3px solid greenyellow;
   border-radius: 10px;
+}
+
+.CategoriesList {
+  list-style: none;
+  border: 5px solid purple;
 }
