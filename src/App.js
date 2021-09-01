@@ -13,10 +13,10 @@ import { WriteReview } from './components/WriteReview';
 function App() {
   // TODO:
   //    implement optimistic rendering for votes (reviews, comments)
+  //    extract categories state to App and put on NavBar
   //    sort out default user
   //    post a new comment on a review (signed in as default user)
   //    sort reviews (created_at, comment_count, votes)
-  //    extract isLoading into separate custom hooks for each GET request
 
   return (
     <div className="App">

@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getReviews } from '../api';
+import { useReviewsList } from '../hooks/useReviewsList';
 
 export const ReviewsList = () => {
-  const [reviews, setReviews] = useState([]);
-
   const { category } = useParams();
-
-  useEffect(() => {
-    getReviews(category)
-      .then(reviewsFromApi => {
-        setReviews(reviewsFromApi);
-      })
-      .catch(err => console.log(err));
-  }, [category]);
+  const { reviews, isLoading, incrementVotes, decrementVotes, err } =
+    useReviewsList(category);
 
   return (
     <div>
@@ -21,6 +12,7 @@ export const ReviewsList = () => {
       <Link to="/reviews/write-review">
         <p>Write a review</p>
       </Link>
+      <p>{isLoading ? 'Loading...' : null}</p>
       <ul className="ReviewsList">
         {reviews.map(
           ({
@@ -46,6 +38,13 @@ export const ReviewsList = () => {
                   <p>{owner}</p>
                 </Link>
                 <p>Votes: {votes}</p>
+                <p>{err ? err : null}</p>
+                <button onClick={() => incrementVotes(review_id)}>
+                  Up Vote
+                </button>
+                <button onClick={() => decrementVotes(review_id)}>
+                  Down Vote
+                </button>
                 <p>Comments: {comment_count}</p>
               </li>
             );

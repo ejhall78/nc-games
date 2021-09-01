@@ -69,7 +69,7 @@ export const useComments = review_id => {
     setErr(null);
 
     // patch
-    patchCommentVotes(comment_id, 1).catch(err => {
+    patchCommentVotes(comment_id, -1).catch(err => {
       console.log(err);
       setComments(currentComments => {
         const updatedComments = currentComments.map(comment => {
