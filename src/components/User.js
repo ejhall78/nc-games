@@ -1,22 +1,16 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getUser } from '../api';
+import { useUser } from '../hooks/useUser';
 
 export const User = () => {
-  const [user, setUser] = useState({});
   const { username } = useParams();
-
-  useEffect(() => {
-    getUser(username)
-      .then(userFromApi => setUser(userFromApi))
-      .catch(err => console.log(err));
-  }, [username]);
+  const { user, isLoading } = useUser(username);
 
   return (
     <div className="User">
       <h3>{username}</h3>
+      <p>{isLoading ? 'Loading...' : null}</p>
       <img src={user.avatar_url} alt="avatar" />
-      <p>Name: {user.name}</p>
+      <p>Name: {isLoading ? 'Loading...' : user.name}</p>
     </div>
   );
 };

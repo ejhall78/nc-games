@@ -16,7 +16,7 @@ function App() {
   //    post a new comment on a review (signed in as default user)
   //    sort reviews (created_at, comment_count, votes)
 
-  const { categories } = useCategories();
+  const { categories, isLoading } = useCategories();
   const { currentUser } = useCurrentUser('jessjelly'); // default user
 
   return (
@@ -34,7 +34,7 @@ function App() {
           <Review />
         </Route>
         <Route exact path="/categories">
-          <CategoriesList categories={categories} />
+          <CategoriesList categories={categories} isLoading={isLoading} />
         </Route>
         <Route exact path="/reviews/categories/:category">
           <ReviewsList />
