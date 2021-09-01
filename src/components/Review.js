@@ -4,11 +4,13 @@ import { Comments } from './Comments';
 
 export const Review = () => {
   const { review_id } = useParams();
-  const { review, incrementVotes, decrementVotes, err } = useReview(review_id);
+  const { review, incrementVotes, decrementVotes, err, isLoading } =
+    useReview(review_id);
 
   return (
     <div>
       <div className="Review">
+        <p>{isLoading ? 'Loading...' : null}</p>
         <p>{review.owner}</p>
         <p>Votes {review.votes}</p>
         <p>{err ? err : null}</p>

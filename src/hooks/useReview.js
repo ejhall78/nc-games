@@ -4,12 +4,14 @@ import { getReviewById, patchReviewVotes } from '../api';
 export const useReview = review_id => {
   const [review, setReview] = useState({});
   const [err, setErr] = useState(null);
-  // isLoading
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getReviewById(review_id)
       .then(reviewFromApi => {
         setReview(reviewFromApi);
+        setIsLoading(false);
       })
       .catch(err => console.log(err));
   }, [review_id]);
@@ -52,5 +54,5 @@ export const useReview = review_id => {
     });
   };
 
-  return { review, incrementVotes, decrementVotes, err };
+  return { review, incrementVotes, decrementVotes, err, isLoading };
 };
