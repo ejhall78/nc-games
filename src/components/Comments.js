@@ -6,10 +6,8 @@ export const Comments = ({ review_id, isLoading, setIsLoading }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     getCommentsById(review_id)
       .then(commentsFromApi => {
-        setIsLoading(false);
         setComments(commentsFromApi);
       })
       .catch(err => console.log(err));
@@ -18,7 +16,6 @@ export const Comments = ({ review_id, isLoading, setIsLoading }) => {
   return (
     <div className="Comments">
       <h3>Comments</h3>
-      {isLoading ? 'Loading...' : null}
       <ul className="Comments__commentsList">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (

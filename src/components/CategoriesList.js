@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../api';
 
-export const CategoriesList = ({
-  categories,
-  setCategories,
-  isLoading,
-  setIsLoading,
-}) => {
+export const CategoriesList = () => {
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    setIsLoading(true);
     getCategories()
       .then(catsFromApi => {
-        setIsLoading(false);
         setCategories(catsFromApi);
       })
       .catch(err => console.log(err));
@@ -20,7 +15,6 @@ export const CategoriesList = ({
 
   return (
     <div>
-      {isLoading ? 'Loading...' : null}
       <ul className="CategoriesList">
         {categories.map(({ slug, description }) => {
           return (

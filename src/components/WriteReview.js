@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const WriteReview = () => {
+export const WriteReview = ({ categories }) => {
   const [newReview, setNewReview] = useState({
     owner: '',
     title: '',
@@ -8,6 +8,13 @@ export const WriteReview = () => {
     designer: '',
     category: '',
   });
+
+  const categoriesOptions = categories.map(category => {
+    return <option value={category.slug}>{category.slug}</option>;
+  });
+
+  console.log(categoriesOptions);
+  console.log(categories, 'categories');
 
   return (
     <form>
@@ -25,10 +32,7 @@ export const WriteReview = () => {
       </label>
       <label>
         Category:
-        <select>
-          <option value="category1">category1</option>
-          <option value="category2">category2</option>
-        </select>
+        <select></select>
       </label>
     </form>
   );

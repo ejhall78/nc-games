@@ -2,16 +2,14 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getReviews } from '../api';
 
-export const ReviewsList = ({ isLoading, setIsLoading }) => {
+export const ReviewsList = () => {
   const [reviews, setReviews] = useState([]);
 
   const { category } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
     getReviews(category)
       .then(reviewsFromApi => {
-        setIsLoading(false);
         setReviews(reviewsFromApi);
       })
       .catch(err => console.log(err));
@@ -23,7 +21,6 @@ export const ReviewsList = ({ isLoading, setIsLoading }) => {
       <Link to="/reviews/write-review">
         <p>Write a review</p>
       </Link>
-      {isLoading ? 'Loading...' : null}
       <ul className="ReviewsList">
         {reviews.map(
           ({
