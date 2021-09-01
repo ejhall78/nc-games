@@ -41,3 +41,7 @@ header {
 .Comments__commentsList li {
   border-bottom: 1px solid black;
 }
+
+.NavBar__category-button {
+  margin: 5px;
+}

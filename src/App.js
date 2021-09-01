@@ -1,6 +1,4 @@
 import './App.css';
-// import { useState, useEffect } from 'react';
-// import { getCategories } from './api';
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 import { ReviewsList } from './components/ReviewsList';
@@ -9,19 +7,22 @@ import { CategoriesList } from './components/CategoriesList';
 import { Review } from './components/Review';
 import { User } from './components/User';
 import { WriteReview } from './components/WriteReview';
+import { useCategories } from './hooks/useCategories';
+import { useCurrentUser } from './hooks/useCurrentUser';
 
 function App() {
   // TODO:
-  //    implement optimistic rendering for votes (reviews, comments)
-  //    extract categories state to App and put on NavBar
   //    sort out default user
   //    post a new comment on a review (signed in as default user)
   //    sort reviews (created_at, comment_count, votes)
 
+  const { categories } = useCategories();
+  const { currentUser } = useCurrentUser('jessjelly'); // default user
+
   return (
     <div className="App">
-      <Header />
-      <NavBar />
+      <Header currentUser={currentUser} />
+      <NavBar categories={categories} />
       <Switch>
         <Route exact path="/">
           <ReviewsList />
@@ -33,7 +34,7 @@ function App() {
           <Review />
         </Route>
         <Route exact path="/categories">
-          <CategoriesList />
+          <CategoriesList categories={categories} />
         </Route>
         <Route exact path="/reviews/categories/:category">
           <ReviewsList />

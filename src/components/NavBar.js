@@ -1,9 +1,20 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-export const NavBar = () => {
+export const NavBar = ({ categories }) => {
   return (
     <div className="NavBar">
-      <Link to="/categories">Categories</Link>
+      <NavLink to="/categories">All Categories</NavLink>
+      {categories.map(({ slug }) => {
+        return (
+          <NavLink
+            key={slug}
+            className="NavBar__category-button"
+            to={`/reviews/categories/${slug}`}
+          >
+            {slug}
+          </NavLink>
+        );
+      })}
     </div>
   );
 };
