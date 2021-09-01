@@ -12,7 +12,6 @@ import { useCurrentUser } from './hooks/useCurrentUser';
 
 function App() {
   // TODO:
-  //    sort out default user
   //    post a new comment on a review (signed in as default user)
   //    sort reviews (created_at, comment_count, votes)
 
@@ -25,10 +24,10 @@ function App() {
       <NavBar categories={categories} />
       <Switch>
         <Route exact path="/">
-          <ReviewsList />
+          <ReviewsList categories={categories} />
         </Route>
         <Route exact path="/reviews/write-review">
-          <WriteReview />
+          <WriteReview categories={categories} />
         </Route>
         <Route exact path="/reviews/:review_id">
           <Review />
