@@ -13,9 +13,6 @@ export const WriteReview = ({ categories }) => {
     return <option value={category.slug}>{category.slug}</option>;
   });
 
-  console.log(categoriesOptions);
-  console.log(categories, 'categories');
-
   return (
     <form>
       <label>

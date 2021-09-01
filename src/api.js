@@ -4,9 +4,9 @@ const api = axios.create({
   baseURL: 'https://be-nc-games-ejhall78.herokuapp.com/api',
 });
 
-export const getReviews = async category => {
+export const getReviews = async (category, sort_by, order) => {
   const response = await api.get('/reviews', {
-    params: { category: category },
+    params: { category, sort_by, order },
   });
 
   return response.data.reviews;

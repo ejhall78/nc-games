@@ -3,8 +3,17 @@ import { useReviewsList } from '../hooks/useReviewsList';
 
 export const ReviewsList = () => {
   const { category } = useParams();
-  const { reviews, isLoading, incrementVotes, decrementVotes, err } =
-    useReviewsList(category);
+  const {
+    reviews,
+    isLoading,
+    incrementVotes,
+    decrementVotes,
+    err,
+    sortBy,
+    setSortBy,
+    order,
+    toggleOrder,
+  } = useReviewsList(category);
 
   return (
     <div>
@@ -13,6 +22,17 @@ export const ReviewsList = () => {
         <p>Write a review</p>
       </Link>
       <p>{isLoading ? 'Loading...' : null}</p>
+      {/* TODO: turn these buttons into drop downs */}
+      <button onClick={() => setSortBy('created_at')}>Sort By Date</button>
+      <button onClick={() => setSortBy('comment_count')}>
+        Sort By Number of Comments
+      </button>
+      <button onClick={() => setSortBy('votes')}>
+        Sort By Number of Votes
+      </button>
+      <button onClick={() => toggleOrder(order)}>
+        {order === 'desc' ? 'Descending' : 'Ascending'}
+      </button>
       <ul className="ReviewsList">
         {reviews.map(
           ({
@@ -54,3 +74,13 @@ export const ReviewsList = () => {
     </div>
   );
 };
+
+// drop down to sort reviews - needs someway to use setSortBy when option selected
+/* <select>
+        <option value="" disabled selected>
+          Sort Reviews
+        </option>
+        <option value="created_at">Date</option>
+        <option value="comment_count">Number of Comments</option>
+        <option value="votes">Votes</option>
+      </select> */

@@ -6,16 +6,18 @@ export const useReviewsList = category => {
   const [reviews, setReviews] = useState([]);
   const [err, setErr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [sortBy, setSortBy] = useState(null);
+  const [order, setOrder] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(category)
+    getReviews(category, sortBy, order)
       .then(reviewsFromApi => {
         setReviews(reviewsFromApi);
         setIsLoading(false);
       })
       .catch(err => console.log(err));
-  }, [category]);
+  }, [category, sortBy, order]);
 
   const incrementVotes = review_id => {
     setReviews(currentReviews => {
@@ -89,5 +91,20 @@ export const useReviewsList = category => {
     });
   };
 
-  return { reviews, isLoading, incrementVotes, decrementVotes, err };
+  const toggleOrder = order => {
+    if (order === 'desc') setOrder('asc');
+    else setOrder('desc');
+  };
+
+  return {
+    reviews,
+    isLoading,
+    incrementVotes,
+    decrementVotes,
+    err,
+    sortBy,
+    setSortBy,
+    order,
+    toggleOrder,
+  };
 };
