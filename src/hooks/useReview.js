@@ -24,8 +24,10 @@ export const useReview = review_id => {
       return updatedVotesReview;
     });
     setErr(null);
+
     // send patch request to server
     patchReviewVotes(review_id, 1).catch(err => {
+      console.log(err);
       setReview(currentReview => {
         const updatedVotesReview = { ...currentReview };
         updatedVotesReview.votes--;
@@ -43,9 +45,11 @@ export const useReview = review_id => {
       return updatedVotesReview;
     });
     setErr(null);
+
     // send patch request to server
     patchReviewVotes(review_id, -1).catch(err => {
       setReview(currentReview => {
+        console.log(err);
         const updatedVotesReview = { ...currentReview };
         updatedVotesReview.votes++;
         return updatedVotesReview;

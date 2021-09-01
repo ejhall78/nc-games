@@ -39,3 +39,7 @@ export const getUser = async username => {
 export const patchReviewVotes = async (review_id, votes) => {
   await api.patch(`/reviews/${review_id}`, { inc_votes: votes });
 };
+
+export const patchCommentVotes = async (comment_id, votes) => {
+  await api.patch(`/comments/${comment_id}`, { inc_votes: votes });
+};

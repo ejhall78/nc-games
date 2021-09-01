@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getCommentsById } from '../api';
+import { useComments } from '../hooks/useComments';
 
-export const Comments = ({ review_id, isLoading, setIsLoading }) => {
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    getCommentsById(review_id)
-      .then(commentsFromApi => {
-        setComments(commentsFromApi);
-      })
-      .catch(err => console.log(err));
-  }, [review_id]);
+export const Comments = ({ review_id }) => {
+  const { comments, isLoading, incrementVotes, decrementVotes, err } =
+    useComments(review_id);
 
   return (
     <div className="Comments">
       <h3>Comments</h3>
+      <p>{isLoading ? 'Loading...' : null}</p>
       <ul className="Comments__commentsList">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
@@ -24,6 +17,13 @@ export const Comments = ({ review_id, isLoading, setIsLoading }) => {
                 <p>{author}</p>
               </Link>
               <p>Votes: {votes}</p>
+              <p>{err ? err : null}</p>
+              <button onClick={() => incrementVotes(comment_id)}>
+                Up Vote
+              </button>
+              <button onClick={() => decrementVotes(comment_id)}>
+                Down Vote
+              </button>
               <p>{body}</p>
               <p>{created_at.toString()}</p>
             </li>
