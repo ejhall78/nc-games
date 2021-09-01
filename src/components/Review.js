@@ -3,19 +3,24 @@ import { useParams } from 'react-router-dom';
 import { getReviewById } from '../api';
 import { Comments } from './Comments';
 
-export const Review = () => {
+export const Review = ({ isLoading, setIsLoading }) => {
   const [review, setReview] = useState({});
   const { review_id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     getReviewById(review_id)
-      .then(review => setReview(review))
+      .then(review => {
+        setIsLoading(false);
+        setReview(review);
+      })
       .catch(err => console.log(err));
   }, [review_id]);
 
   return (
     <div>
       <div className="Review">
+        {isLoading ? 'Loading...' : null}
         <p>{review.owner}</p>
         <p>Votes {review.votes}</p>
         <h2>{review.title}</h2>
@@ -27,7 +32,11 @@ export const Review = () => {
         />
         <p>{review.review_body}</p>
       </div>
-      <Comments review_id={review_id} />
+      <Comments
+        review_id={review_id}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 };

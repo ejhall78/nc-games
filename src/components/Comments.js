@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCommentsById } from '../api';
 
-export const Comments = ({ review_id }) => {
+export const Comments = ({ review_id, isLoading, setIsLoading }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     getCommentsById(review_id)
-      .then(commentsFromApi => setComments(commentsFromApi))
+      .then(commentsFromApi => {
+        setIsLoading(false);
+        setComments(commentsFromApi);
+      })
       .catch(err => console.log(err));
   }, [review_id]);
 
   return (
     <div className="Comments">
       <h3>Comments</h3>
+      {isLoading ? 'Loading...' : null}
       <ul className="Comments__commentsList">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
