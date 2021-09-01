@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getReviewById } from '../api';
+import { useReview } from '../hooks/useReview';
 import { Comments } from './Comments';
 
 export const Review = () => {
-  const [review, setReview] = useState({});
   const { review_id } = useParams();
-
-  useEffect(() => {
-    getReviewById(review_id)
-      .then(review => {
-        setReview(review);
-      })
-      .catch(err => console.log(err));
-  }, [review_id]);
+  const { review, incrementVotes, decrementVotes, err } = useReview(review_id);
 
   return (
     <div>
       <div className="Review">
         <p>{review.owner}</p>
         <p>Votes {review.votes}</p>
+        <p>{err ? err : null}</p>
+        <button onClick={incrementVotes}>Up vote</button>
+        <button onClick={decrementVotes}>Down vote</button>
         <h2>{review.title}</h2>
         <img
           alt={review.title}

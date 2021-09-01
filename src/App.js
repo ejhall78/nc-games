@@ -1,6 +1,6 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import { getCategories } from './api';
+// import { useState, useEffect } from 'react';
+// import { getCategories } from './api';
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
 import { ReviewsList } from './components/ReviewsList';
@@ -11,7 +11,12 @@ import { User } from './components/User';
 import { WriteReview } from './components/WriteReview';
 
 function App() {
-  // TODO: extract isLoading into separate custom hooks for each GET request
+  // TODO:
+  //    implement optimistic rendering for votes (reviews, comments)
+  //    sort out default user
+  //    post a new comment on a review (signed in as default user)
+  //    sort reviews (created_at, comment_count, votes)
+  //    extract isLoading into separate custom hooks for each GET request
 
   return (
     <div className="App">

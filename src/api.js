@@ -35,3 +35,7 @@ export const getUser = async username => {
 
   return res.data.user;
 };
+
+export const patchReviewVotes = async (review_id, votes) => {
+  await api.patch(`/reviews/${review_id}`, { inc_votes: votes });
+};

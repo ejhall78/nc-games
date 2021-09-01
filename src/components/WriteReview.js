@@ -1,20 +1,20 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export const WriteReview = ({ categories }) => {
-  const [newReview, setNewReview] = useState({
-    owner: '',
-    title: '',
-    review_body: '',
-    designer: '',
-    category: '',
-  });
+  // const [newReview, setNewReview] = useState({
+  //   owner: '',
+  //   title: '',
+  //   review_body: '',
+  //   designer: '',
+  //   category: '',
+  // });
 
-  const categoriesOptions = categories.map(category => {
-    return <option value={category.slug}>{category.slug}</option>;
-  });
+  // const categoriesOptions = categories.map(category => {
+  //   return <option value={category.slug}>{category.slug}</option>;
+  // });
 
-  console.log(categoriesOptions);
-  console.log(categories, 'categories');
+  // console.log(categoriesOptions);
+  // console.log(categories, 'categories');
 
   return (
     <form>
