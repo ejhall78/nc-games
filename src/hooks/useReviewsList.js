@@ -91,11 +91,6 @@ export const useReviewsList = category => {
     });
   };
 
-  const toggleOrder = order => {
-    if (order === 'desc') setOrder('asc');
-    else setOrder('desc');
-  };
-
   return {
     reviews,
     isLoading,
@@ -105,6 +100,6 @@ export const useReviewsList = category => {
     sortBy,
     setSortBy,
     order,
-    toggleOrder,
+    setOrder,
   };
 };

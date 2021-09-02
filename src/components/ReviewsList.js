@@ -12,7 +12,7 @@ export const ReviewsList = () => {
     sortBy,
     setSortBy,
     order,
-    toggleOrder,
+    setOrder,
   } = useReviewsList(category);
 
   return (
@@ -22,17 +22,27 @@ export const ReviewsList = () => {
         <p>Write a review</p>
       </Link>
       <p>{isLoading ? 'Loading...' : null}</p>
-      {/* TODO: turn these buttons into drop downs */}
-      <button onClick={() => setSortBy('created_at')}>Sort By Date</button>
-      <button onClick={() => setSortBy('comment_count')}>
-        Sort By Number of Comments
-      </button>
-      <button onClick={() => setSortBy('votes')}>
-        Sort By Number of Votes
-      </button>
-      <button onClick={() => toggleOrder(order)}>
-        {order === 'desc' ? 'Descending' : 'Ascending'}
-      </button>
+      {/* TODO extract drop downs into components */}
+      <select
+        value={sortBy ? sortBy : ''}
+        onChange={event => setSortBy(event.target.value)}
+      >
+        <option value="" defaultValue>
+          Sort Reviews
+        </option>
+        <option value="created_at">Date</option>
+        <option value="comment_count">Number of Comments</option>
+        <option value="votes">Votes</option>
+      </select>
+      <select
+        value={order ? order : ''}
+        onChange={event => setOrder(event.target.value)}
+      >
+        <option value="asc" defaultValue>
+          Ascending
+        </option>
+        <option value="desc">Descending</option>
+      </select>
       <ul className="ReviewsList">
         {reviews.map(
           ({

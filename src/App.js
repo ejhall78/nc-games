@@ -13,7 +13,7 @@ import { useCurrentUser } from './hooks/useCurrentUser';
 function App() {
   // TODO:
   //    post a new comment on a review (signed in as default user)
-  //    sort reviews (created_at, comment_count, votes)
+  //    convert sort buttons into a drop down
 
   const { categories, isLoading } = useCategories();
   const { currentUser } = useCurrentUser('jessjelly'); // default user
