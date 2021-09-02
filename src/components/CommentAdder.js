@@ -15,8 +15,9 @@ export const CommentAdder = ({
 
     postComment(body, username, review_id).then(commentFromApi => {
       setComments(currentComments => {
-        return [...currentComments, commentFromApi];
+        return [commentFromApi, ...currentComments];
       });
+
       setBody('');
     });
   };
