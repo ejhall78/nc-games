@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useReview } from '../hooks/useReview';
 import { Comments } from './Comments';
 
@@ -9,6 +9,9 @@ export const Review = ({ currentUser }) => {
 
   return (
     <div>
+      <Link to="/reviews/write-review">
+        <p>Write a review as {currentUser.username}</p>
+      </Link>
       <div className="Review">
         <p>{isLoading ? 'Loading...' : null}</p>
         <p>{review.owner}</p>

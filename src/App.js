@@ -12,8 +12,11 @@ import { useCurrentUser } from './hooks/useCurrentUser';
 
 function App() {
   // TODO:
-  //    post a new comment on a review (signed in as default user)
-  //    convert sort buttons into a drop down
+  //    post a new review
+  //    error handling for posting a comment/review
+  //    pagination for reviews & comments
+  //    be able to delete a comment/review owned by currentUser
+  //    style
 
   const { categories, isLoading } = useCategories();
   const { currentUser } = useCurrentUser('jessjelly'); // default user
@@ -24,10 +27,10 @@ function App() {
       <NavBar categories={categories} />
       <Switch>
         <Route exact path="/">
-          <ReviewsList categories={categories} />
+          <ReviewsList categories={categories} currentUser={currentUser} />
         </Route>
         <Route exact path="/reviews/write-review">
-          <WriteReview categories={categories} />
+          <WriteReview categories={categories} currentUser={currentUser} />
         </Route>
         <Route exact path="/reviews/:review_id">
           <Review currentUser={currentUser} />
@@ -36,7 +39,7 @@ function App() {
           <CategoriesList categories={categories} isLoading={isLoading} />
         </Route>
         <Route exact path="/reviews/categories/:category">
-          <ReviewsList />
+          <ReviewsList currentUser={currentUser} />
         </Route>
         <Route exact path="/users/:username">
           <User />

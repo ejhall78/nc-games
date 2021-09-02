@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useReviewsList } from '../hooks/useReviewsList';
 
-export const ReviewsList = () => {
+export const ReviewsList = ({ currentUser }) => {
   const { category } = useParams();
   const {
     reviews,
@@ -19,7 +19,7 @@ export const ReviewsList = () => {
     <div>
       <h2>{category ? category : null}</h2>
       <Link to="/reviews/write-review">
-        <p>Write a review</p>
+        <p>Write a review as {currentUser.username}</p>
       </Link>
       <p>{isLoading ? 'Loading...' : null}</p>
       {/* TODO extract drop downs into components */}

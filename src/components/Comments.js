@@ -18,7 +18,6 @@ export const Comments = ({ review_id, currentUser }) => {
       <CommentAdder
         currentUser={currentUser}
         review_id={review_id}
-        comments={comments}
         setComments={setComments}
       />
       <p>{isLoading ? 'Loading...' : null}</p>
