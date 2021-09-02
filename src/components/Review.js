@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useReview } from '../hooks/useReview';
 import { Comments } from './Comments';
 
-export const Review = () => {
+export const Review = ({ currentUser }) => {
   const { review_id } = useParams();
   const { review, incrementVotes, decrementVotes, err, isLoading } =
     useReview(review_id);
@@ -25,7 +25,7 @@ export const Review = () => {
         />
         <p>{review.review_body}</p>
       </div>
-      <Comments review_id={review_id} />
+      <Comments review_id={review_id} currentUser={currentUser} />
     </div>
   );
 };

@@ -88,5 +88,12 @@ export const useComments = review_id => {
     });
   };
 
-  return { comments, isLoading, incrementVotes, decrementVotes, err };
+  return {
+    comments,
+    setComments,
+    isLoading,
+    incrementVotes,
+    decrementVotes,
+    err,
+  };
 };

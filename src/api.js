@@ -43,3 +43,12 @@ export const patchReviewVotes = async (review_id, votes) => {
 export const patchCommentVotes = async (comment_id, votes) => {
   await api.patch(`/comments/${comment_id}`, { inc_votes: votes });
 };
+
+export const postComment = async (body, username, review_id) => {
+  const res = await api.post(`/reviews/${review_id}/comments`, {
+    body,
+    username,
+  });
+
+  return res.data.comment;
+};

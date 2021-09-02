@@ -30,7 +30,7 @@ function App() {
           <WriteReview categories={categories} />
         </Route>
         <Route exact path="/reviews/:review_id">
-          <Review />
+          <Review currentUser={currentUser} />
         </Route>
         <Route exact path="/categories">
           <CategoriesList categories={categories} isLoading={isLoading} />

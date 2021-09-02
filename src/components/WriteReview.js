@@ -1,16 +1,25 @@
 import { useState } from 'react';
 
 export const WriteReview = ({ categories }) => {
-  const [newReview, setNewReview] = useState({
-    owner: '',
-    title: '',
-    review_body: '',
-    designer: '',
-    category: '',
-  });
+  // const [newReview, setNewReview] = useState({
+  //   owner: '',
+  //   title: '',
+  //   review_body: '',
+  //   designer: '',
+  //   category: '',
+  // });
 
-  const categoriesOptions = categories.map(category => {
-    return <option value={category.slug}>{category.slug}</option>;
+  // add states for other fields
+  // abstract into custom hook
+
+  const [selectedCategory, setSelectCategory] = useState('');
+
+  const categoriesOptions = categories.map(({ slug }) => {
+    return (
+      <option key={slug} value={slug}>
+        {slug}
+      </option>
+    );
   });
 
   return (
@@ -29,8 +38,11 @@ export const WriteReview = ({ categories }) => {
       </label>
       <label>
         Category:
-        <select>
-          <option value="" disabled selected>
+        <select
+          value={selectedCategory}
+          onChange={event => setSelectCategory(event.target.value)}
+        >
+          <option value="" defaultValue>
             Select a Category
           </option>
           {categoriesOptions}

@@ -1,13 +1,26 @@
 import { Link } from 'react-router-dom';
 import { useComments } from '../hooks/useComments';
+import { CommentAdder } from './CommentAdder';
 
-export const Comments = ({ review_id }) => {
-  const { comments, isLoading, incrementVotes, decrementVotes, err } =
-    useComments(review_id);
+export const Comments = ({ review_id, currentUser }) => {
+  const {
+    comments,
+    setComments,
+    isLoading,
+    incrementVotes,
+    decrementVotes,
+    err,
+  } = useComments(review_id);
 
   return (
     <div className="Comments">
       <h3>Comments</h3>
+      <CommentAdder
+        currentUser={currentUser}
+        review_id={review_id}
+        comments={comments}
+        setComments={setComments}
+      />
       <p>{isLoading ? 'Loading...' : null}</p>
       <ul className="Comments__commentsList">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
