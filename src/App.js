@@ -13,11 +13,12 @@ import { useCurrentUser } from './hooks/useCurrentUser';
 function App() {
   // TODO:
   //    post a new review
-  //    pagination for reviews & comments
   //    style
   //    only allow 1 vote on a comment/review
-  //    fix bug - deleteReview getting 500 server error
   //    error handling for posting/deleting a comment/review
+  //    bug fixes:
+  //        deleteReview getting 500 server error
+  //        button disabled not working for CommentsNav buttons
 
   const { categories, isLoading } = useCategories();
   const { currentUser } = useCurrentUser('jessjelly'); // default user

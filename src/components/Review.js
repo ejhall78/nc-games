@@ -8,17 +8,12 @@ export const Review = ({ currentUser }) => {
     useReview(review_id);
 
   return (
-    <div>
+    <div className="content is-normal">
       <Link to="/reviews/write-review">
         <p>Write a review as {currentUser.username}</p>
       </Link>
-      <div className="Review">
+      <div className="box">
         <p>{isLoading ? 'Loading...' : null}</p>
-        <p>{review.owner}</p>
-        <p>Votes {review.votes}</p>
-        <p>{err ? err : null}</p>
-        <button onClick={incrementVotes}>Up vote</button>
-        <button onClick={decrementVotes}>Down vote</button>
         <h2>{review.title}</h2>
         <img
           alt={review.title}
@@ -27,6 +22,15 @@ export const Review = ({ currentUser }) => {
           width="20%"
         />
         <p>{review.review_body}</p>
+        <p>{review.owner}</p>
+        <p>Votes {review.votes}</p>
+        <p>{err ? err : null}</p>
+        <button className="button is-success is-small" onClick={incrementVotes}>
+          Up vote
+        </button>
+        <button className="button is-danger is-small" onClick={decrementVotes}>
+          Down vote
+        </button>
       </div>
       <Comments review_id={review_id} currentUser={currentUser} />
     </div>

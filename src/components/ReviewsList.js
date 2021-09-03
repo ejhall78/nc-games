@@ -61,18 +61,19 @@ export const ReviewsList = ({ currentUser }) => {
   ]);
 
   return (
-    <div>
+    <div className="content is-normal">
       <h2>{category ? category : null}</h2>
       <Link to="/reviews/write-review">
-        <p>Write a review as {currentUser.username}</p>
+        <p className="button">Write a review as {currentUser.username}</p>
       </Link>
       <p>{isLoading ? 'Loading...' : null}</p>
       {/* TODO extract drop downs into components */}
       <select
         value={sortBy ? sortBy : ''}
+        className="button is-small"
         onChange={event => setSortBy(event.target.value)}
       >
-        <option value="" defaultValue>
+        <option value="" defaultValue disabled>
           Sort Reviews
         </option>
         <option value="created_at">Date</option>
@@ -80,6 +81,7 @@ export const ReviewsList = ({ currentUser }) => {
         <option value="votes">Votes</option>
       </select>
       <select
+        className="button is-small"
         value={order ? order : ''}
         onChange={event => setOrder(event.target.value)}
       >
@@ -88,7 +90,7 @@ export const ReviewsList = ({ currentUser }) => {
         </option>
         <option value="desc">Descending</option>
       </select>
-      <ul className="ReviewsList">
+      <div className="ReviewsList">
         {reviews.map(
           ({
             review_id,
@@ -99,7 +101,7 @@ export const ReviewsList = ({ currentUser }) => {
             comment_count,
           }) => {
             return (
-              <li key={review_id} className="ReviewsList__review">
+              <div key={review_id} className="box">
                 {owner === currentUser.username ? (
                   <ReviewDeleter
                     review_id={review_id}
@@ -120,19 +122,25 @@ export const ReviewsList = ({ currentUser }) => {
                 </Link>
                 <p>Votes: {votes}</p>
                 <p>{err ? err : null}</p>
-                <button onClick={() => incrementVotes(review_id)}>
+                <button
+                  className="button is-success is-small"
+                  onClick={() => incrementVotes(review_id)}
+                >
                   Up Vote
                 </button>
-                <button onClick={() => decrementVotes(review_id)}>
+                <button
+                  className="button is-danger is-small"
+                  onClick={() => decrementVotes(review_id)}
+                >
                   Down Vote
                 </button>
                 <p>Comments: {comment_count}</p>
-              </li>
+              </div>
             );
           }
         )}
         {bottomReached ? bottomReached : null}
-      </ul>
+      </div>
     </div>
   );
 };

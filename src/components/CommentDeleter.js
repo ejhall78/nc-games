@@ -37,7 +37,12 @@ export const CommentDeleter = ({ comment_id, setComments, comments }) => {
   return (
     <div>
       {err ? err : null}
-      <button onClick={() => handleClick()}>Delete</button>
+      <button
+        className="button is-danger is-outlined"
+        onClick={() => handleClick()}
+      >
+        Delete
+      </button>
     </div>
   );
 };

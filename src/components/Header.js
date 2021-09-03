@@ -6,12 +6,11 @@ export const Header = ({ currentUser }) => {
   return (
     <header className="Header">
       <Link to="/">
-        <h1>nc-games</h1>
+        <h1 className="title">nc-games</h1>
       </Link>
       <Link to={`/users/${username}`}>
         <p>User Profile</p>
       </Link>
-      <p>Search Bar</p>
     </header>
   );
 };

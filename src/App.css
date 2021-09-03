@@ -1,33 +1,11 @@
+@import 'https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css';
+
 .App {
   text-align: center;
 }
 
 header {
-  border: 5px solid red;
-}
-
-.NavBar {
-  border: 5px solid blue;
-  padding: 1em;
-}
-
-.ReviewsList {
-  border: 5px solid purple;
-  list-style: none;
-}
-
-.ReviewsList__review {
-  border: 3px solid greenyellow;
-  border-radius: 10px;
-}
-
-.CategoriesList {
-  list-style: none;
-  border: 5px solid purple;
-}
-
-.Review {
-  border: 5px solid green;
+  border: 3px solid red;
 }
 
 .Comments {

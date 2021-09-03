@@ -32,15 +32,21 @@ export const CommentAdder = ({
     <form onSubmit={handleSubmit}>
       <h4>Leave a comment</h4>
       {/* <p>{err ? err : null}</p> */}
-      <label>
-        Write here:
-        <textarea
-          value={body}
-          onChange={event => setBody(event.target.value)}
-          required
-        ></textarea>
-        <button type="submit">Post Comment</button>
-      </label>
+      <div className="field">
+        <label className="label">
+          Comment
+          <textarea
+            value={body}
+            onChange={event => setBody(event.target.value)}
+            required
+            className="textarea"
+            placeholder="Write your comment here"
+          ></textarea>
+          <button className="button is-inverted" type="submit">
+            Post Comment
+          </button>
+        </label>
+      </div>
     </form>
   );
 };
