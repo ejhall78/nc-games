@@ -24,8 +24,13 @@ export const getReviewById = async review_id => {
   return res.data.review;
 };
 
-export const getCommentsById = async review_id => {
-  const res = await api.get(`reviews/${review_id}/comments`);
+export const getCommentsById = async (review_id, page) => {
+  const res = await api.get(`reviews/${review_id}/comments`, {
+    params: {
+      page,
+      limit: 5,
+    },
+  });
 
   return res.data.comments;
 };

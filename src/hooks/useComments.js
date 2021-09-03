@@ -3,18 +3,24 @@ import { getCommentsById, patchCommentVotes } from '../api';
 
 export const useComments = review_id => {
   const [comments, setComments] = useState([]);
+  const [total_count, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
   const [err, setErr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    getCommentsById(review_id)
-      .then(commentsFromApi => {
-        setComments(commentsFromApi);
-        setIsLoading(false);
-      })
-      .catch(err => console.log(err));
-  }, [review_id]);
+    if (page > 0) {
+      setIsLoading(true);
+      getCommentsById(review_id, page)
+        .then(({ comments, total_count }) => {
+          console.log(page);
+          setComments(comments);
+          setTotalCount(total_count);
+          setIsLoading(false);
+        })
+        .catch(err => console.log(err));
+    }
+  }, [review_id, setTotalCount, page]);
 
   const incrementVotes = comment_id => {
     setComments(currentComments => {
@@ -95,5 +101,7 @@ export const useComments = review_id => {
     incrementVotes,
     decrementVotes,
     err,
+    total_count,
+    setPage,
   };
 };

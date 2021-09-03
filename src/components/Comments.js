@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useComments } from '../hooks/useComments';
 import { CommentAdder } from './CommentAdder';
 import { CommentDeleter } from './CommentDeleter';
+import { CommentsNav } from './CommentsNav';
 
 export const Comments = ({ review_id, currentUser }) => {
   const {
@@ -11,6 +12,9 @@ export const Comments = ({ review_id, currentUser }) => {
     incrementVotes,
     decrementVotes,
     err,
+    total_count,
+    setPage,
+    page,
   } = useComments(review_id);
 
   return (
@@ -50,6 +54,7 @@ export const Comments = ({ review_id, currentUser }) => {
           );
         })}
       </ul>
+      <CommentsNav setPage={setPage} total_count={total_count} page={page} />
     </div>
   );
 };
