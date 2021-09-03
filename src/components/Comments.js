@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useComments } from '../hooks/useComments';
 import { CommentAdder } from './CommentAdder';
+import { CommentDeleter } from './CommentDeleter';
 
 export const Comments = ({ review_id, currentUser }) => {
   const {
@@ -25,6 +26,13 @@ export const Comments = ({ review_id, currentUser }) => {
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
             <li key={comment_id}>
+              {author === currentUser.username ? (
+                <CommentDeleter
+                  setComments={setComments}
+                  comments={comments}
+                  comment_id={comment_id}
+                />
+              ) : null}
               <Link to={`/users/${author}`}>
                 <p>{author}</p>
               </Link>

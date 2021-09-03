@@ -4,12 +4,12 @@ const api = axios.create({
   baseURL: 'https://be-nc-games-ejhall78.herokuapp.com/api',
 });
 
-export const getReviews = async (category, sort_by, order) => {
+export const getReviews = async (category, sort_by, order, limit) => {
   const response = await api.get('/reviews', {
-    params: { category, sort_by, order },
+    params: { category, sort_by, order, limit },
   });
 
-  return response.data.reviews;
+  return response.data;
 };
 
 export const getCategories = async () => {
@@ -51,4 +51,12 @@ export const postComment = async (body, username, review_id) => {
   });
 
   return res.data.comment;
+};
+
+export const deleteComment = async comment_id => {
+  await api.delete(`/comments/${comment_id}`);
+};
+
+export const deleteReview = async review_id => {
+  await api.delete(`/reviews/${review_id}`);
 };

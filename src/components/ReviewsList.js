@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { getReviews } from '../api';
 import { useReviewsList } from '../hooks/useReviewsList';
+import { ReviewDeleter } from './ReviewDeleter';
 
 export const ReviewsList = ({ currentUser }) => {
   const { category } = useParams();
@@ -13,7 +16,49 @@ export const ReviewsList = ({ currentUser }) => {
     setSortBy,
     order,
     setOrder,
+    setReviews,
+    limit,
+    setLimit,
+    total_count,
+    bottomReached,
+    setBottomReached,
   } = useReviewsList(category);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight;
+
+      if (bottom) {
+        if (limit < 10 || limit === null) setLimit(20);
+        else if (limit + 10 > +total_count) {
+          setBottomReached('No more reviews');
+        } else setLimit(currLimit => currLimit + 10);
+
+        getReviews(category, sortBy, order, limit)
+          .then(({ reviews }) => {
+            setReviews(reviews);
+          })
+          .catch(err => console.log(err));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [
+    setBottomReached,
+    total_count,
+    setReviews,
+    setLimit,
+    category,
+    sortBy,
+    order,
+    limit,
+  ]);
 
   return (
     <div>
@@ -55,6 +100,12 @@ export const ReviewsList = ({ currentUser }) => {
           }) => {
             return (
               <li key={review_id} className="ReviewsList__review">
+                {owner === currentUser.username ? (
+                  <ReviewDeleter
+                    review_id={review_id}
+                    setReviews={setReviews}
+                  />
+                ) : null}
                 <Link to={`/reviews/${review_id}`}>
                   <p>{title}</p>
                   <img
@@ -80,6 +131,7 @@ export const ReviewsList = ({ currentUser }) => {
             );
           }
         )}
+        {bottomReached ? bottomReached : null}
       </ul>
     </div>
   );

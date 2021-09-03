@@ -8,12 +8,16 @@ export const useReviewsList = category => {
   const [isLoading, setIsLoading] = useState(false);
   const [sortBy, setSortBy] = useState(null);
   const [order, setOrder] = useState(null);
+  const [limit, setLimit] = useState(null);
+  const [total_count, setTotalCount] = useState(0);
+  const [bottomReached, setBottomReached] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
     getReviews(category, sortBy, order)
-      .then(reviewsFromApi => {
-        setReviews(reviewsFromApi);
+      .then(({ reviews, total_count }) => {
+        setReviews(reviews);
+        setTotalCount(total_count);
         setIsLoading(false);
       })
       .catch(err => console.log(err));
@@ -101,5 +105,11 @@ export const useReviewsList = category => {
     setSortBy,
     order,
     setOrder,
+    setReviews,
+    limit,
+    setLimit,
+    total_count,
+    bottomReached,
+    setBottomReached,
   };
 };
