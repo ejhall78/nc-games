@@ -113,8 +113,8 @@ export const ReviewsList = ({ currentUser }) => {
                   <img
                     alt={title}
                     src={review_img_url}
-                    height="20%"
-                    width="20%"
+                    height="200"
+                    width="200"
                   />
                 </Link>
                 <Link to={`/users/${owner}`}>

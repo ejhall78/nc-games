@@ -5,7 +5,7 @@
 }
 
 header {
-  border: 3px solid red;
+  border-bottom: 3px solid #f6f6f6;
 }
 
 .Comments {
@@ -22,4 +22,9 @@ header {
 
 .NavBar__category-button {
   margin: 5px;
+}
+
+.ReviewsList {
+  max-width: 800px;
+  margin: 0 auto;
 }
