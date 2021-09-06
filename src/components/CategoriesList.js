@@ -9,7 +9,7 @@ export const CategoriesList = ({ categories, isLoading }) => {
           return (
             <li key={slug}>
               <Link to={`/reviews/categories/${slug}`}>
-                <h2>{slug}</h2>
+                <h4 className="title is-4">{slug}</h4>
               </Link>
               <p>{description}</p>
             </li>

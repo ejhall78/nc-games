@@ -28,3 +28,12 @@ header {
   max-width: 800px;
   margin: 0 auto;
 }
+
+.CategoriesList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.CategoriesList p {
+  margin: 10px;
+}
