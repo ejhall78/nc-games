@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { deleteComment } from '../api';
 
-export const CommentDeleter = ({ comment_id, setComments, comments }) => {
+export const CommentDeleter = ({
+  comment_id,
+  setComments,
+  comments,
+  setDeleted,
+}) => {
   const [err, setErr] = useState(null);
   const [currentComment, setCurrentComment] = useState({});
 
@@ -23,15 +28,19 @@ export const CommentDeleter = ({ comment_id, setComments, comments }) => {
     });
     setErr(null);
     // delete from server
-    deleteComment(comment_id).catch(err => {
-      console.log(err);
+    deleteComment(comment_id)
+      .then(() => {
+        setDeleted(true);
+      })
+      .catch(err => {
+        console.log(err);
 
-      setComments(currentComments => {
-        return [currentComment, ...currentComments];
+        setComments(currentComments => {
+          return [currentComment, ...currentComments];
+        });
+
+        setErr('Something went wrong, please try again.');
       });
-
-      setErr('Something went wrong, please try again.');
-    });
   };
 
   return (

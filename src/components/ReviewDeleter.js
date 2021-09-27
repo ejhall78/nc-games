@@ -15,5 +15,9 @@ export const ReviewDeleter = ({ setReviews, review_id }) => {
     deleteReview(review_id).catch(err => console.log(err));
   };
 
-  return <button onClick={handleClick}>Delete</button>;
+  return (
+    <button className="button is-danger is-outlined" onClick={handleClick}>
+      Delete
+    </button>
+  );
 };

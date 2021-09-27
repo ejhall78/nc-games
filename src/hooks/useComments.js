@@ -6,6 +6,7 @@ export const useComments = review_id => {
   const [total_count, setTotalCount] = useState(0);
   const [page, setPage] = useState(1);
   const [err, setErr] = useState(null);
+  const [deleted, setDeleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -102,5 +103,7 @@ export const useComments = review_id => {
     err,
     total_count,
     setPage,
+    deleted,
+    setDeleted,
   };
 };

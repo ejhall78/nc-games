@@ -5,12 +5,15 @@ export const CommentAdder = ({
   currentUser: { username },
   review_id,
   setComments,
+  setDeleted,
 }) => {
   const [body, setBody] = useState('');
   // const [err, setErr] = useState(null);
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    setDeleted(false);
 
     postComment(body, username, review_id).then(commentFromApi => {
       setComments(currentComments => {

@@ -15,6 +15,8 @@ export const Comments = ({ review_id, currentUser }) => {
     total_count,
     setPage,
     page,
+    deleted,
+    setDeleted,
   } = useComments(review_id);
 
   return (
@@ -24,8 +26,10 @@ export const Comments = ({ review_id, currentUser }) => {
         currentUser={currentUser}
         review_id={review_id}
         setComments={setComments}
+        setDeleted={setDeleted}
       />
       <p>{isLoading ? 'Loading...' : null}</p>
+      <p>{deleted ? 'Comment Deleted' : null}</p>
       <div className="list">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
@@ -35,6 +39,7 @@ export const Comments = ({ review_id, currentUser }) => {
                   setComments={setComments}
                   comments={comments}
                   comment_id={comment_id}
+                  setDeleted={setDeleted}
                 />
               ) : null}
               <Link to={`/users/${author}`}>
