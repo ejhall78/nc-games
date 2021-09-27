@@ -65,3 +65,21 @@ export const deleteComment = async comment_id => {
 export const deleteReview = async review_id => {
   await api.delete(`/reviews/${review_id}`);
 };
+
+export const postReview = async (
+  title,
+  review_body,
+  designer,
+  category,
+  owner
+) => {
+  const res = await api.post('/reviews', {
+    title,
+    review_body,
+    designer,
+    category,
+    owner,
+  });
+
+  return res.data.review;
+};

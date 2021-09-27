@@ -61,36 +61,40 @@ export const ReviewsList = ({ currentUser }) => {
   ]);
 
   return (
-    <div className="content is-normal">
-      <h2>{category ? category : null}</h2>
-      <Link to="/reviews/write-review">
-        <p className="button">Write a review as {currentUser.username}</p>
-      </Link>
-      <p>{isLoading ? 'Loading...' : null}</p>
-      {/* TODO extract drop downs into components */}
-      <select
-        value={sortBy ? sortBy : ''}
-        className="button is-small"
-        onChange={event => setSortBy(event.target.value)}
-      >
-        <option value="" defaultValue disabled>
-          Sort Reviews
-        </option>
-        <option value="created_at">Date</option>
-        <option value="comment_count">Number of Comments</option>
-        <option value="votes">Votes</option>
-      </select>
-      <select
-        className="button is-small"
-        value={order ? order : ''}
-        onChange={event => setOrder(event.target.value)}
-      >
-        <option value="asc" defaultValue>
-          Ascending
-        </option>
-        <option value="desc">Descending</option>
-      </select>
-      <div className="ReviewsList">
+    <div className="ReviewsList">
+      <div className="content is-normal">
+        <h2>{category ? category : null}</h2>
+        <Link to="/reviews/write-review">
+          <p className="button">Write a review as {currentUser.username}</p>
+        </Link>
+        <p>{isLoading ? 'Loading...' : null}</p>
+        {/* TODO extract drop downs into components */}
+        <div className="box">
+          <div className="ReviewsList__sort-buttons">
+            <select
+              value={sortBy ? sortBy : ''}
+              className="select"
+              onChange={event => setSortBy(event.target.value)}
+            >
+              <option value="" defaultValue disabled>
+                Sort Reviews
+              </option>
+              <option value="created_at">Date</option>
+              <option value="comment_count">Number of Comments</option>
+              <option value="votes">Votes</option>
+            </select>
+            <select
+              className="select"
+              value={order ? order : ''}
+              onChange={event => setOrder(event.target.value)}
+            >
+              <option value="asc" defaultValue>
+                Ascending
+              </option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+        </div>
         {reviews.map(
           ({
             review_id,

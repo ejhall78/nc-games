@@ -13,7 +13,10 @@ export const useReview = review_id => {
         setReview(reviewFromApi);
         setIsLoading(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setReview({ title: 'This review does not exist...' });
+        setIsLoading(false);
+      });
   }, [review_id]);
 
   const incrementVotes = () => {
@@ -57,7 +60,6 @@ export const useReview = review_id => {
       setErr('Something went wrong, please try again.');
     });
   };
-
 
   return { review, incrementVotes, decrementVotes, err, isLoading };
 };

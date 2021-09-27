@@ -29,36 +29,34 @@ export const Comments = ({ review_id, currentUser }) => {
       <div className="list">
         {comments.map(({ votes, created_at, author, body, comment_id }) => {
           return (
-            <div className="box">
-              <div key={comment_id}>
-                {author === currentUser.username ? (
-                  <CommentDeleter
-                    setComments={setComments}
-                    comments={comments}
-                    comment_id={comment_id}
-                  />
-                ) : null}
-                <Link to={`/users/${author}`}>
-                  <p>{author}</p>
-                </Link>
-                <p>Votes: {votes}</p>
-                <p>{err ? err : null}</p>
-                <button
-                  className="button is-success"
-                  onClick={() => incrementVotes(comment_id)}
-                >
-                  Up Vote
-                </button>
-                <button
-                  className="button is-danger"
-                  onClick={() => decrementVotes(comment_id)}
-                >
-                  Down Vote
-                </button>
-                <div className="content">
-                  <p>{body}</p>
-                  <p>{created_at.replaceAll('T', ' ').slice(0, -5)}</p>
-                </div>
+            <div className="box" key={comment_id}>
+              {author === currentUser.username ? (
+                <CommentDeleter
+                  setComments={setComments}
+                  comments={comments}
+                  comment_id={comment_id}
+                />
+              ) : null}
+              <Link to={`/users/${author}`}>
+                <p>{author}</p>
+              </Link>
+              <p>Votes: {votes}</p>
+              <p>{err ? err : null}</p>
+              <button
+                className="button is-success"
+                onClick={() => incrementVotes(comment_id)}
+              >
+                Up Vote
+              </button>
+              <button
+                className="button is-danger"
+                onClick={() => decrementVotes(comment_id)}
+              >
+                Down Vote
+              </button>
+              <div className="content">
+                <p>{body}</p>
+                <p>{created_at.replaceAll('T', ' ').slice(0, -5)}</p>
               </div>
             </div>
           );

@@ -6,7 +6,16 @@
 
 header {
   border-bottom: 3px solid #f6f6f6;
+  /* display: flex; */
 }
+
+/* .Header__title {
+  text-align: left;
+}
+
+.Header__profile {
+  text-align: right;
+} */
 
 .Comments {
   border: 5px solid orange;
@@ -24,9 +33,23 @@ header {
   margin: 5px;
 }
 
+.Review {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .ReviewsList {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.WriteReview {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ReviewsList__sort-buttons {
+  text-align: left;
 }
 
 .CategoriesList {

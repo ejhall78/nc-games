@@ -13,7 +13,6 @@ export const useComments = review_id => {
       setIsLoading(true);
       getCommentsById(review_id, page)
         .then(({ comments, total_count }) => {
-          console.log(page);
           setComments(comments);
           setTotalCount(total_count);
           setIsLoading(false);

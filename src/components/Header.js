@@ -9,7 +9,7 @@ export const Header = ({ currentUser }) => {
         <h1 className="title">nc-games</h1>
       </Link>
       <Link to={`/users/${username}`}>
-        <p>User Profile</p>
+        <p>Profile</p>
       </Link>
     </header>
   );
