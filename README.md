@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# nc-games
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Summary
 
-## Available Scripts
+The purpose of this project is to provide a front-end website to allow users to interact with my nc-games API: https://be-nc-games-ejhall78.herokuapp.com/
 
-In the project directory, you can run:
+The theme of the data is board games! Users can create, read, update and delete reviews of certain board games; comments on said reviews; the users that made the comments and the game categories.
 
-### `npm start`
+Here is a link to the app so you can try it out for yourself: https://nc-games-ejhall78.netlify.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Enjoy :-)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+If you want to run the app on your own machine, there are a few steps to setting it up:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `Cloning the repo`
+- `Installing dependencies`
+- `Running a development server`
 
-### `npm run build`
+## Cloning the repo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- cd (change directory) into the location where you want to save this on your machine
+- Press the green Code button on the repo on GitHub
+- Copy the relevant link whether you are using HTTPS or SSH
+- In your desired directory on your local machine, type the following and hit enter:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone <paste link from GitHub here>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- cd into nc-games
+- You have now successfully cloned the repo and may choose to open it with your code editor of choice
+- Hint: if you use VSCode, type the following and press enter to open your current directory:
 
-### `npm run eject`
+```
+code .
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Installing dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Now type the following and hit enter:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm i
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Running a development server
 
-## Learn More
+As this is a react app, react has created a script that allows us to run a development server on our local machines
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Type the following into your terminal and hit enter to open a development server on localhost:3000/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm start
+```
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This should open a new tab in your default browser and head to localhost:3000/ where you can see the app working
