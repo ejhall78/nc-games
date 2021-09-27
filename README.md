@@ -55,7 +55,7 @@ Now type the following and hit enter:
 npm i
 ```
 
-### Running a development server
+## Running a development server
 
 As this is a react app, react has created a script that allows us to run a development server on our local machines
 
@@ -66,3 +66,7 @@ npm start
 ```
 
 This should open a new tab in your default browser and head to localhost:3000/ where you can see the app working
+
+## User login
+
+Currently, I have not integrated any user authentication or the ability to make a new user account. Therefore, the default user signed in is `jessjelly` and you can write and delete reviews and comments owned by this user
