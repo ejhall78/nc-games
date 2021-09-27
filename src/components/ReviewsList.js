@@ -23,6 +23,8 @@ export const ReviewsList = ({ currentUser }) => {
     total_count,
     bottomReached,
     setBottomReached,
+    deleted,
+    setDeleted,
   } = useReviewsList(category);
 
   useEffect(() => {
@@ -96,6 +98,7 @@ export const ReviewsList = ({ currentUser }) => {
             </select>
           </div>
         </div>
+        <p>{deleted ? 'Review Deleted' : null}</p>
         {reviews.map(
           ({
             review_id,
@@ -111,6 +114,7 @@ export const ReviewsList = ({ currentUser }) => {
                   <ReviewDeleter
                     review_id={review_id}
                     setReviews={setReviews}
+                    setDeleted={setDeleted}
                   />
                 ) : null}
                 <Link to={`/reviews/${review_id}`}>
@@ -128,7 +132,6 @@ export const ReviewsList = ({ currentUser }) => {
                 <p>Votes: {votes}</p>
                 <p>{err ? err : null}</p>
                 <ReviewsListVoter
-                  currentUser={currentUser}
                   review_id={review_id}
                   incrementVotes={incrementVotes}
                   decrementVotes={decrementVotes}

@@ -1,6 +1,6 @@
 import { deleteReview } from '../api';
 
-export const ReviewDeleter = ({ setReviews, review_id }) => {
+export const ReviewDeleter = ({ setReviews, review_id, setDeleted }) => {
   const handleClick = () => {
     // optimistically remove review from state
     setReviews(currentReviews => {
@@ -12,7 +12,11 @@ export const ReviewDeleter = ({ setReviews, review_id }) => {
     });
 
     // delete review from database
-    deleteReview(review_id).catch(err => console.log(err));
+    deleteReview(review_id)
+      .then(() => {
+        setDeleted(true);
+      })
+      .catch(err => console.log(err));
   };
 
   return (

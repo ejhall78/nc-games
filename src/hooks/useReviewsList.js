@@ -10,6 +10,7 @@ export const useReviewsList = category => {
   const [order, setOrder] = useState(null);
   const [limit, setLimit] = useState(null);
   const [total_count, setTotalCount] = useState(0);
+  const [deleted, setDeleted] = useState(false);
   const [bottomReached, setBottomReached] = useState('');
 
   useEffect(() => {
@@ -138,5 +139,7 @@ export const useReviewsList = category => {
     total_count,
     bottomReached,
     setBottomReached,
+    deleted,
+    setDeleted,
   };
 };
