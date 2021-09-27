@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getReviews } from '../api';
 import { useReviewsList } from '../hooks/useReviewsList';
 import { ReviewDeleter } from './ReviewDeleter';
+import { ReviewsListVoter } from './ReviewsListVoter';
 
 export const ReviewsList = ({ currentUser }) => {
   const { category } = useParams();
@@ -126,18 +127,12 @@ export const ReviewsList = ({ currentUser }) => {
                 </Link>
                 <p>Votes: {votes}</p>
                 <p>{err ? err : null}</p>
-                <button
-                  className="button is-success is-small"
-                  onClick={() => incrementVotes(review_id)}
-                >
-                  Up Vote
-                </button>
-                <button
-                  className="button is-danger is-small"
-                  onClick={() => decrementVotes(review_id)}
-                >
-                  Down Vote
-                </button>
+                <ReviewsListVoter
+                  currentUser={currentUser}
+                  review_id={review_id}
+                  incrementVotes={incrementVotes}
+                  decrementVotes={decrementVotes}
+                />
                 <p>Comments: {comment_count}</p>
               </div>
             );

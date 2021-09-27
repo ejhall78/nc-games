@@ -22,7 +22,13 @@ export const useComments = review_id => {
     }
   }, [review_id, setTotalCount, page]);
 
-  const incrementVotes = comment_id => {
+  const incrementVotes = (
+    comment_id,
+    upVoted,
+    downVoted,
+    setUpVoted,
+    setDownVoted
+  ) => {
     setComments(currentComments => {
       const updatedComments = currentComments.map(comment => {
         const newComment = { ...comment };
@@ -37,6 +43,12 @@ export const useComments = review_id => {
       return updatedComments;
     });
     setErr(null);
+    if (downVoted && !upVoted) {
+      setUpVoted(true);
+      setDownVoted(false);
+    } else {
+      setUpVoted(true);
+    }
 
     // patch
     patchCommentVotes(comment_id, 1).catch(err => {
@@ -58,7 +70,13 @@ export const useComments = review_id => {
     });
   };
 
-  const decrementVotes = comment_id => {
+  const decrementVotes = (
+    comment_id,
+    upVoted,
+    downVoted,
+    setUpVoted,
+    setDownVoted
+  ) => {
     setComments(currentComments => {
       const updatedComments = currentComments.map(comment => {
         const newComment = { ...comment };
@@ -73,6 +91,12 @@ export const useComments = review_id => {
       return updatedComments;
     });
     setErr(null);
+    if (upVoted && !downVoted) {
+      setUpVoted(false);
+      setDownVoted(true);
+    } else {
+      setDownVoted(true);
+    }
 
     // patch
     patchCommentVotes(comment_id, -1).catch(err => {

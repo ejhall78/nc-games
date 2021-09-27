@@ -4,8 +4,15 @@ import { Comments } from './Comments';
 
 export const Review = ({ currentUser }) => {
   const { review_id } = useParams();
-  const { review, incrementVotes, decrementVotes, err, isLoading } =
-    useReview(review_id);
+  const {
+    review,
+    incrementVotes,
+    decrementVotes,
+    err,
+    isLoading,
+    upVoted,
+    downVoted,
+  } = useReview(review_id);
 
   return (
     <div className="content is-normal">
@@ -28,11 +35,13 @@ export const Review = ({ currentUser }) => {
           <p>{err ? err : null}</p>
           <button
             className="button is-success is-small"
+            disabled={upVoted}
             onClick={incrementVotes}
           >
             Up vote
           </button>
           <button
+            disabled={downVoted}
             className="button is-danger is-small"
             onClick={decrementVotes}
           >

@@ -5,6 +5,8 @@ export const useReview = review_id => {
   const [review, setReview] = useState({});
   const [err, setErr] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [upVoted, setUpVoted] = useState(false);
+  const [downVoted, setDownVoted] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,6 +29,12 @@ export const useReview = review_id => {
       return updatedVotesReview;
     });
     setErr(null);
+    if (downVoted && !upVoted) {
+      setUpVoted(true);
+      setDownVoted(false);
+    } else {
+      setUpVoted(true);
+    }
 
     // send patch request to server
     patchReviewVotes(review_id, 1).catch(err => {
@@ -47,7 +55,12 @@ export const useReview = review_id => {
       updatedVotesReview.votes--;
       return updatedVotesReview;
     });
-    setErr(null);
+    if (upVoted && !downVoted) {
+      setUpVoted(false);
+      setDownVoted(true);
+    } else {
+      setDownVoted(true);
+    }
 
     // send patch request to server
     patchReviewVotes(review_id, -1).catch(err => {
@@ -61,5 +74,13 @@ export const useReview = review_id => {
     });
   };
 
-  return { review, incrementVotes, decrementVotes, err, isLoading };
+  return {
+    review,
+    incrementVotes,
+    decrementVotes,
+    err,
+    isLoading,
+    upVoted,
+    downVoted,
+  };
 };

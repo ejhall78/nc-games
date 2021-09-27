@@ -23,7 +23,13 @@ export const useReviewsList = category => {
       .catch(err => console.log(err));
   }, [category, sortBy, order]);
 
-  const incrementVotes = review_id => {
+  const incrementVotes = (
+    review_id,
+    upVoted,
+    downVoted,
+    setUpVoted,
+    setDownVoted
+  ) => {
     setReviews(currentReviews => {
       const updatedReviews = currentReviews.map(review => {
         const newReview = { ...review };
@@ -39,6 +45,14 @@ export const useReviewsList = category => {
     });
     setErr(null);
 
+    // if already voted, toggle downVoted back to false
+    // this is to give the option of changing the vote
+    if (downVoted && !upVoted) {
+      setUpVoted(true);
+      setDownVoted(false);
+    } else {
+      setUpVoted(true);
+    }
     // patch
     patchReviewVotes(review_id, 1).catch(err => {
       console.log(err);
@@ -59,7 +73,13 @@ export const useReviewsList = category => {
     });
   };
 
-  const decrementVotes = review_id => {
+  const decrementVotes = (
+    review_id,
+    upVoted,
+    downVoted,
+    setUpVoted,
+    setDownVoted
+  ) => {
     setReviews(currentReviews => {
       const updatedReviews = currentReviews.map(review => {
         const newReview = { ...review };
@@ -74,6 +94,13 @@ export const useReviewsList = category => {
       return updatedReviews;
     });
     setErr(null);
+
+    if (upVoted && !downVoted) {
+      setUpVoted(false);
+      setDownVoted(true);
+    } else {
+      setDownVoted(true);
+    }
 
     // patch
     patchReviewVotes(review_id, -1).catch(err => {

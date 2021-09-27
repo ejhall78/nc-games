@@ -3,6 +3,7 @@ import { useComments } from '../hooks/useComments';
 import { CommentAdder } from './CommentAdder';
 import { CommentDeleter } from './CommentDeleter';
 import { CommentsNav } from './CommentsNav';
+import { CommentsVoter } from './CommentsVoter';
 
 export const Comments = ({ review_id, currentUser }) => {
   const {
@@ -47,18 +48,11 @@ export const Comments = ({ review_id, currentUser }) => {
               </Link>
               <p>Votes: {votes}</p>
               <p>{err ? err : null}</p>
-              <button
-                className="button is-success"
-                onClick={() => incrementVotes(comment_id)}
-              >
-                Up Vote
-              </button>
-              <button
-                className="button is-danger"
-                onClick={() => decrementVotes(comment_id)}
-              >
-                Down Vote
-              </button>
+              <CommentsVoter
+                comment_id={comment_id}
+                incrementVotes={incrementVotes}
+                decrementVotes={decrementVotes}
+              />
               <div className="content">
                 <p>{body}</p>
                 <p>{created_at.replaceAll('T', ' ').slice(0, -5)}</p>
