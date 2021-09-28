@@ -2,7 +2,11 @@
 
 ## Project Summary
 
-The purpose of this project is to provide a front-end website to allow users to interact with my nc-games API: https://be-nc-games-ejhall78.herokuapp.com/ https://github.com/ejhall78/be-nc-games
+The purpose of this project is to provide a front-end website to allow users to interact with my nc-games API:
+
+https://be-nc-games-ejhall78.herokuapp.com/
+
+https://github.com/ejhall78/be-nc-games
 
 The theme of the data is board games! Users can create, read, update and delete reviews of certain board games; comments on said reviews; the users that made the comments and the game categories.
 
